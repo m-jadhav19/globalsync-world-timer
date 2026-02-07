@@ -97,17 +97,17 @@ const ClockCard: React.FC<ClockCardProps> = ({ zone, now, format, onRemove, isDi
               {gmtOffset}
             </span>
           </div>
-          <span className="text-[9px] font-bold text-[#444] uppercase tracking-[0.2em] font-pop truncate opacity-40">
+          <span className="text-[9px] font-bold text-[var(--text-muted)] uppercase tracking-[0.2em] font-pop truncate opacity-40">
             {zone.country || 'Global'}
           </span>
         </div>
 
         {/* Day/Night Icon */}
         <div className={`p-1.5 rounded-full transition-all duration-300 ${isNight
-            ? 'text-[#8888ff] opacity-70 group-hover:opacity-100'
-            : 'text-[#CCFF00] opacity-70 group-hover:opacity-100'
+          ? 'text-[#8888ff] opacity-70 group-hover:opacity-100'
+          : 'text-[var(--accent-neon)] opacity-70 group-hover:opacity-100'
           }`}>
-          {isNight ? <Moon size={16} strokeWidth={1.5} /> : <Sun size={16} strokeWidth={1.5} />}
+          {isNight ? <Moon size={22} strokeWidth={1.5} /> : <Sun size={22} strokeWidth={1.5} />}
         </div>
       </div>
 
@@ -115,7 +115,7 @@ const ClockCard: React.FC<ClockCardProps> = ({ zone, now, format, onRemove, isDi
       {(dayContext || isSleeping) && (
         <div className="absolute top-6 left-6 flex gap-2 z-10">
           {dayContext && (
-            <span className="px-2 py-0.5 bg-[#CCFF00]/15 text-[#CCFF00] text-[8px] font-black uppercase tracking-widest rounded">
+            <span className="px-2 py-0.5 bg-[var(--accent-neon)]/15 text-[var(--accent-neon)] text-[8px] font-black uppercase tracking-widest rounded">
               {dayContext}
             </span>
           )}
@@ -129,27 +129,27 @@ const ClockCard: React.FC<ClockCardProps> = ({ zone, now, format, onRemove, isDi
 
       {/* Middle: Time */}
       <div className="flex items-baseline mt-auto z-10 transform translate-y-2">
-        <span className={`text-[5rem] leading-[0.8] font-black text-white font-pop tracking-tighter transition-transform duration-300 ${isChanging ? 'translate-y-[-4px] opacity-80' : 'translate-y-0 opacity-100'
+        <span className={`text-[5rem] leading-[0.8] font-black text-[var(--text-primary)] font-pop tracking-tighter transition-transform duration-300 ${isChanging ? 'translate-y-[-4px] opacity-80' : 'translate-y-0 opacity-100'
           }`}>
           {hourStr}
         </span>
-        <span className="text-2xl text-[#444] font-black mx-1 mb-4 time-colon">:</span>
-        <span className={`text-[5rem] leading-[0.8] font-black text-white font-pop tracking-tighter font-extrabold transition-transform duration-300 ${isChanging ? 'translate-y-[-4px] opacity-80' : 'translate-y-0 opacity-100'
+        <span className="text-2xl text-[var(--text-muted)] font-black mx-1 mb-4 time-colon">:</span>
+        <span className={`text-[5rem] leading-[0.8] font-black text-[var(--text-primary)] font-pop tracking-tighter font-extrabold transition-transform duration-300 ${isChanging ? 'translate-y-[-4px] opacity-80' : 'translate-y-0 opacity-100'
           }`}>
           {minuteStr}
         </span>
         {format === TimeFormat.H12 && (
-          <span className="ml-2 text-sm font-bold text-[#666] self-end mb-3 opacity-50">{dayPeriod}</span>
+          <span className="ml-2 text-sm font-bold text-[var(--text-secondary)] self-end mb-3 opacity-50">{dayPeriod}</span>
         )}
       </div>
 
       {/* Bottom: Date */}
-      <div className="mt-3 flex items-center justify-between border-t border-[#222] pt-3 z-10">
-        <span className="text-xs font-bold text-[#888] uppercase tracking-widest font-pop">
+      <div className="mt-3 flex items-center justify-between border-t border-[var(--metal-edge)] pt-3 z-10">
+        <span className="text-xs font-bold text-[var(--text-secondary)] uppercase tracking-widest font-pop">
           {new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric' }).format(now)}
         </span>
         {isWorkHours && (
-          <span className="text-[8px] font-black text-[#CCFF00]/60 uppercase tracking-wider">
+          <span className="text-[8px] font-black text-[var(--accent-neon)]/60 uppercase tracking-wider">
             WORK HOURS
           </span>
         )}
@@ -161,7 +161,7 @@ const ClockCard: React.FC<ClockCardProps> = ({ zone, now, format, onRemove, isDi
         className="absolute top-4 right-4 p-2 text-[#444] hover:text-[#FF0099] transition-all opacity-0 group-hover:opacity-100 z-50 bg-[#0a0a0a] rounded-full border border-[#333] shadow-lg hover:scale-110"
         title="Remove Clock"
       >
-        <X size={14} strokeWidth={2} />
+        <X size={18} strokeWidth={2} />
       </button>
 
     </div>

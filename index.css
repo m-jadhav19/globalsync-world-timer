@@ -3,26 +3,41 @@
 @tailwind utilities;
 
 :root {
-  /* Modern Pop Palette */
-  --bg-primary: #050505;     /* Soft Black */
-  --bg-card: #0F0F0F;        /* Soft Dark Grey */
-  --accent-pop: #CCFF00;     /* Cyber Lime */
-  --accent-secondary: #FF0099; /* Hot Pink */
+  /* Metallic Dark UI — Color System */
+  --metal-bg-top: #0C0F14;
+  --metal-bg-bottom: #141922;
+  --metal-panel-start: #161B24;
+  --metal-panel-end: #10141B;
+  --metal-active-start: #1C2330;
+  --metal-active-end: #121722;
+  --metal-edge: rgba(255,255,255,0.06);
   
-  /* Text */
-  --text-primary: #FFFFFF;
-  --text-dim: #666666;
+  --text-primary: #F8FAFC;
+  --text-secondary: rgba(255,255,255,0.65);
+  --text-muted: rgba(255,255,255,0.45);
   
-  /* Borders */
-  --border-pop: 2px solid #333;
+  --accent-neon: #C8FF00;
+  --accent-secondary: #FF0099;
 }
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: var(--bg-primary);
+  background: 
+    radial-gradient(
+      120% 80% at 50% -20%,
+      rgba(255,255,255,0.04),
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      var(--metal-bg-top),
+      var(--metal-bg-bottom)
+    );
+  background-attachment: fixed;
   color: var(--text-primary);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
 
 .font-pop {
@@ -37,36 +52,42 @@ body {
   letter-spacing: -0.05em;
 }
 
-/* Card Pop Effect */
+/* Card Metallic Effect */
 .card-pop {
-  background-color: var(--bg-card);
-  border: 1px solid #222;
+  background: linear-gradient(145deg, var(--metal-panel-start), var(--metal-panel-end));
+  border: 1px solid var(--metal-edge);
   border-radius: 32px;
+  box-shadow: 
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 20px 60px rgba(0,0,0,0.6);
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .card-pop:hover {
   transform: translateY(-4px);
-  border-color: var(--accent-pop);
+  border-color: rgba(200, 255, 0, 0.3);
   box-shadow: 
-    0 0 0 1px var(--accent-pop), 
-    0 20px 40px -10px rgba(204, 255, 0, 0.15);
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 0 30px rgba(200, 255, 0, 0.1),
+    0 25px 50px rgba(0,0,0,0.7);
 }
 
 /* Anchor Card (Current Location) */
 .card-anchor {
-  transform: scale(1.02);
-  border-color: rgba(204, 255, 0, 0.3);
+  background: linear-gradient(145deg, var(--metal-active-start), var(--metal-active-end));
+  border-color: rgba(200, 255, 0, 0.35);
   box-shadow: 
-    0 0 0 1px rgba(204, 255, 0, 0.35),
-    0 25px 60px rgba(204, 255, 0, 0.2);
+    inset 0 1px 0 rgba(255,255,255,0.1),
+    0 0 30px rgba(200, 255, 0, 0.15),
+    0 30px 60px rgba(0,0,0,0.8);
 }
 
 .card-anchor:hover {
-  transform: scale(1.02) translateY(-4px);
+  border-color: rgba(200, 255, 0, 0.5);
   box-shadow: 
-    0 0 0 1px rgba(204, 255, 0, 0.5),
-    0 30px 80px rgba(204, 255, 0, 0.25);
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    0 0 40px rgba(200, 255, 0, 0.2),
+    0 40px 80px rgba(0,0,0,0.85);
 }
 
 /* Time Colon Pulse */

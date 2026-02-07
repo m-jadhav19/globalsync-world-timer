@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Plus, Globe } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { TimeZoneEntry, TimeFormat, SearchResult } from './types';
 import { INITIAL_ZONES } from './constants';
 import ClockCard from './components/ClockCard';
@@ -51,12 +51,12 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-black text-white font-pop pb-48 selection:bg-[#CCFF00] selection:text-black">
 
       {/* Enhanced Header */}
-      <header className="sticky top-0 z-50 backdrop-blur-xl h-20 flex items-center justify-between px-6 sm:px-12 border-b border-[#222]" style={{
-        background: 'linear-gradient(180deg, rgba(0,0,0,0.95), rgba(0,0,0,0.85))'
+      <header className="sticky top-0 z-50 backdrop-blur-xl h-20 flex items-center justify-between px-6 sm:px-12 border-b border-[var(--metal-edge)]" style={{
+        background: 'linear-gradient(180deg, rgba(12, 15, 20, 0.95), rgba(20, 25, 34, 0.85))'
       }}>
         <div className="flex items-center gap-3">
-          <Globe className="text-[#CCFF00] logo-glow" size={24} strokeWidth={2.5} />
-          <h1 className="text-2xl font-black tracking-tighter text-white">WORLD TIME</h1>
+          <img src="/favicon.svg" alt="GlobalSync Logo" className="w-6 h-6 logo-glow" />
+          <h1 className="text-2xl font-black tracking-tighter text-white" style={{ fontFamily: 'JetBrains Mono' }}  >EPOCH - WORLD TIMER</h1>
         </div>
 
         <button

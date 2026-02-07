@@ -1,5 +1,5 @@
 {
-  "name": "GlobalSync World Timer",
+  "name": "EPOCH - WORLD TIMER",
   "description": "A sophisticated world clock application with real-time zone tracking, day/night visualization, and AI-powered timezone insights.",
   "requestFramePermissions": [
     "geolocation"
