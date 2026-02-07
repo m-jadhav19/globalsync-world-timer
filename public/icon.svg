@@ -1,0 +1,33 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="256" fill="#0F0F0F"/>
+  
+  <!-- Outer Glow Ring -->
+  <circle cx="256" cy="256" r="200" stroke="#CCFF00" stroke-width="3" fill="none" opacity="0.3"/>
+  
+  <!-- Globe Lines (Meridians) -->
+  <ellipse cx="256" cy="256" rx="140" ry="180" stroke="#CCFF00" stroke-width="2.5" fill="none" opacity="0.6"/>
+  <ellipse cx="256" cy="256" rx="180" ry="140" stroke="#CCFF00" stroke-width="2.5" fill="none" opacity="0.6"/>
+  
+  <!-- Equator -->
+  <line x1="76" y1="256" x2="436" y2="256" stroke="#CCFF00" stroke-width="2.5" opacity="0.6"/>
+  
+  <!-- Center Circle (Clock Face) -->
+  <circle cx="256" cy="256" r="120" fill="#1a1a1a" stroke="#CCFF00" stroke-width="3"/>
+  
+  <!-- Clock Hands -->
+  <!-- Hour Hand -->
+  <line x1="256" y1="256" x2="256" y2="196" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
+  
+  <!-- Minute Hand -->
+  <line x1="256" y1="256" x2="306" y2="256" stroke="#CCFF00" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Center Dot -->
+  <circle cx="256" cy="256" r="12" fill="#CCFF00"/>
+  
+  <!-- Time Markers -->
+  <circle cx="256" cy="156" r="4" fill="#666"/>
+  <circle cx="256" cy="356" r="4" fill="#666"/>
+  <circle cx="356" cy="256" r="4" fill="#666"/>
+  <circle cx="156" cy="256" r="4" fill="#666"/>
+</svg>
