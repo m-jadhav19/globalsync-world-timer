@@ -48,7 +48,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white font-pop pb-48 selection:bg-[#CCFF00] selection:text-black">
+    <div className="min-h-screen text-white font-pop pb-48 selection:bg-[var(--accent-primary)] selection:text-black">
 
       {/* Enhanced Header */}
       <header className="sticky top-0 z-50 backdrop-blur-xl h-20 flex items-center justify-between px-6 sm:px-12 border-b border-[var(--metal-edge)]" style={{
@@ -61,7 +61,7 @@ const App: React.FC = () => {
 
         <button
           onClick={() => setShowSelector(true)}
-          className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#CCFF00] text-black font-black uppercase text-xs tracking-wider hover:bg-white transition-all shadow-lg hover:shadow-xl hover:scale-105"
+          className="flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--accent-primary)] text-black font-black uppercase text-xs tracking-wider hover:bg-white transition-all shadow-lg hover:shadow-xl hover:scale-105"
           title="Add City"
         >
           <Plus size={18} strokeWidth={3} />
@@ -90,7 +90,7 @@ const App: React.FC = () => {
               <h2 className="text-3xl font-black text-[#333] mb-4">TIMELINE EMPTY</h2>
               <button
                 onClick={() => setShowSelector(true)}
-                className="px-8 py-4 bg-[#CCFF00] text-black font-black uppercase tracking-wider rounded-xl hover:scale-105 transition-transform"
+                className="px-8 py-4 bg-[var(--accent-primary)] text-black font-black uppercase tracking-wider rounded-xl hover:scale-105 transition-transform"
               >
                 Initialize System
               </button>

@@ -76,7 +76,7 @@ const TimezoneSelector: React.FC<TimezoneSelectorProps> = ({ onAdd, onClose }) =
         {/* Header */}
         <div className="p-6 border-b border-[#222] flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <div className="p-3 bg-[#CCFF00]/10 text-[#CCFF00] rounded-xl">
+            <div className="p-3 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] rounded-xl">
               <Globe size={24} strokeWidth={2.5} />
             </div>
             <div>
@@ -100,7 +100,7 @@ const TimezoneSelector: React.FC<TimezoneSelectorProps> = ({ onAdd, onClose }) =
               ref={inputRef}
               type="text"
               placeholder="Search city or region..."
-              className="w-full pl-12 pr-4 py-4 bg-[#111] border border-[#222] rounded-2xl text-white font-medium focus:outline-none focus:ring-2 focus:ring-[#CCFF00]/50 focus:border-[#CCFF00]/50 transition-all placeholder:text-[#555]"
+              className="w-full pl-12 pr-4 py-4 bg-[#111] border border-[#222] rounded-2xl text-white font-medium focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)]/50 focus:border-[var(--accent-primary)]/50 transition-all placeholder:text-[#555]"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
@@ -117,15 +117,15 @@ const TimezoneSelector: React.FC<TimezoneSelectorProps> = ({ onAdd, onClose }) =
                   key={tz}
                   onClick={() => handleSelect(tz)}
                   disabled={isLoading}
-                  className="w-full flex items-center justify-between p-4 bg-[#111] hover:bg-[#1a1a1a] border border-[#222] hover:border-[#CCFF00]/30 rounded-xl group transition-all duration-200 disabled:opacity-50"
+                  className="w-full flex items-center justify-between p-4 bg-[#111] hover:bg-[#1a1a1a] border border-[#222] hover:border-[var(--accent-primary)]/30 rounded-xl group transition-all duration-200 disabled:opacity-50"
                 >
                   <div className="text-left">
-                    <p className="font-black text-white group-hover:text-[#CCFF00] transition-colors uppercase text-sm tracking-wider">
+                    <p className="font-black text-white group-hover:text-[var(--accent-primary)] transition-colors uppercase text-sm tracking-wider">
                       {tz.split('/').pop()?.replace(/_/g, ' ')}
                     </p>
                     <p className="text-[10px] text-[#555] font-mono mt-1">{tz}</p>
                   </div>
-                  <div className="p-2 bg-[#222] rounded-lg group-hover:bg-[#CCFF00] group-hover:text-black transition-all">
+                  <div className="p-2 bg-[#222] rounded-lg group-hover:bg-[var(--accent-primary)] group-hover:text-black transition-all">
                     {isLoading ? (
                       <Loader2 size={16} strokeWidth={3} className="animate-spin" />
                     ) : (
@@ -145,7 +145,7 @@ const TimezoneSelector: React.FC<TimezoneSelectorProps> = ({ onAdd, onClose }) =
         {/* Footer */}
         <div className="p-4 bg-[#050505] border-t border-[#222] text-center">
           <p className="text-[8px] text-[#555] uppercase tracking-[0.4em] flex items-center justify-center gap-3">
-            WorldTime API <span className="text-[#CCFF00] font-black">Online</span>
+            WorldTime API <span className="text-[var(--accent-primary)] font-black">Online</span>
           </p>
         </div>
       </div>

@@ -105,7 +105,7 @@ const ClockCard: React.FC<ClockCardProps> = ({ zone, now, format, onRemove, isDi
         {/* Day/Night Icon */}
         <div className={`p-1.5 rounded-full transition-all duration-300 ${isNight
           ? 'text-[#8888ff] opacity-70 group-hover:opacity-100'
-          : 'text-[var(--accent-neon)] opacity-70 group-hover:opacity-100'
+          : 'text-[var(--accent-primary)] opacity-70 group-hover:opacity-100'
           }`}>
           {isNight ? <Moon size={22} strokeWidth={1.5} /> : <Sun size={22} strokeWidth={1.5} />}
         </div>
@@ -115,7 +115,7 @@ const ClockCard: React.FC<ClockCardProps> = ({ zone, now, format, onRemove, isDi
       {(dayContext || isSleeping) && (
         <div className="absolute top-6 left-6 flex gap-2 z-10">
           {dayContext && (
-            <span className="px-2 py-0.5 bg-[var(--accent-neon)]/15 text-[var(--accent-neon)] text-[8px] font-black uppercase tracking-widest rounded">
+            <span className="px-2 py-0.5 bg-[var(--accent-primary)]/15 text-[var(--accent-primary)] text-[8px] font-black uppercase tracking-widest rounded">
               {dayContext}
             </span>
           )}
@@ -149,7 +149,7 @@ const ClockCard: React.FC<ClockCardProps> = ({ zone, now, format, onRemove, isDi
           {new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric' }).format(now)}
         </span>
         {isWorkHours && (
-          <span className="text-[8px] font-black text-[var(--accent-neon)]/60 uppercase tracking-wider">
+          <span className="text-[8px] font-black text-[var(--accent-primary)]/60 uppercase tracking-wider">
             WORK HOURS
           </span>
         )}

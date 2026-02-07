@@ -38,18 +38,18 @@ const TimeTravelControl: React.FC<TimeTravelControlProps> = ({ offset, setOffset
     <div className="fixed bottom-6 left-0 right-0 z-50 pointer-events-none flex justify-center px-4">
       <div className={`
         pointer-events-auto
-        relative backdrop-blur-2xl bg-[#0a0a0a]/95 border rounded-3xl
+        relative backdrop-blur-2xl timeline-container border rounded-3xl
         w-full max-w-[700px] overflow-hidden
         transition-all duration-500 ease-out
         ${isActive
-          ? 'border-[#CCFF00]/50 shadow-[0_0_40px_rgba(204,255,0,0.15)] scale-[1.02]'
-          : 'border-[#1a1a1a] shadow-2xl scale-100'
+          ? 'border-[var(--accent-primary)]/50 shadow-[0_0_40px_rgba(124,140,255,0.15)] scale-[1.02]'
+          : 'border-[var(--metal-edge)] shadow-2xl scale-100'
         }
       `}>
 
         {/* Animated glow on active */}
         {isActive && (
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#CCFF00]/5 to-transparent animate-pulse pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--accent-primary)]/5 to-transparent animate-pulse pointer-events-none" />
         )}
 
         <div className="relative px-8 py-6">
@@ -60,7 +60,7 @@ const TimeTravelControl: React.FC<TimeTravelControlProps> = ({ offset, setOffset
               <div className="flex items-center gap-2">
                 <span className="text-[9px] font-black uppercase tracking-[0.25em] text-[#444]">TIME TRAVEL</span>
                 <div className="w-[1px] h-3 bg-[#333]" />
-                <div className={`text-xs font-black uppercase tracking-[0.2em] transition-colors ${isActive ? 'text-[#CCFF00]' : 'text-[#555]'}`}>
+                <div className={`text-xs font-black uppercase tracking-[0.2em] transition-colors ${isActive ? 'text-[var(--accent-primary)]' : 'text-[#555]'}`}>
                   {formatOffset(offset)}
                 </div>
               </div>
@@ -77,7 +77,7 @@ const TimeTravelControl: React.FC<TimeTravelControlProps> = ({ offset, setOffset
             {isActive && (
               <button
                 onClick={onReset}
-                className="group flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-black bg-[#CCFF00] hover:bg-white transition-all px-3 py-1.5 rounded-full"
+                className="group flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-black bg-[var(--accent-primary)] hover:bg-white transition-all px-3 py-1.5 rounded-full"
               >
                 <RotateCcw size={11} strokeWidth={3} className="group-hover:rotate-180 transition-transform duration-500" />
                 Reset
@@ -89,13 +89,13 @@ const TimeTravelControl: React.FC<TimeTravelControlProps> = ({ offset, setOffset
           <div className="relative h-16 flex items-center">
 
             {/* Tick marks background */}
-            <div className="absolute inset-0 flex justify-between items-center pointer-events-none opacity-20">
-              {Array.from({ length: 25 }).map((_, i) => (
+            <div className={`absolute inset-0 flex justify-between items-center pointer-events-none transition-opacity duration-300 ${isScrubbing ? 'opacity-40' : 'opacity-10'}`}>
+              {Array.from({ length: 49 }).map((_, i) => (
                 <div
                   key={i}
-                  className={`w-[1px] bg-[#555] transition-all ${i === 12 ? 'h-8 bg-[#CCFF00]' :
-                    i % 6 === 0 ? 'h-5' :
-                      i % 3 === 0 ? 'h-3' : 'h-1.5'
+                  className={`w-[1px] bg-[var(--text-muted)] transition-all ${i === 24 ? 'h-8 bg-[var(--accent-primary)]' :
+                    i % 12 === 0 ? 'h-5 opacity-60' :
+                      i % 4 === 0 ? 'h-3 opacity-30' : 'h-1.5 opacity-10'
                     }`}
                 />
               ))}
@@ -118,11 +118,11 @@ const TimeTravelControl: React.FC<TimeTravelControlProps> = ({ offset, setOffset
             />
 
             {/* Track background */}
-            <div className="absolute left-0 right-0 h-[1px] bg-[#222] pointer-events-none" />
+            <div className={`absolute left-0 right-0 h-[2px] timeline-track pointer-events-none transition-opacity duration-300 ${isScrubbing ? 'opacity-100' : 'opacity-60'}`} />
 
             {/* Active progress track */}
             <div
-              className="absolute h-[2px] bg-gradient-to-r from-[#CCFF00]/50 to-[#CCFF00] pointer-events-none transition-all duration-100 shadow-[0_0_8px_rgba(204,255,0,0.5)]"
+              className={`absolute h-[2px] timeline-marker-line pointer-events-none transition-all duration-100 timeline-marker-glow`}
               style={{
                 left: offset < 0 ? `calc(50% - ${Math.abs(offset) / 1440 * 50}%)` : '50%',
                 width: `${Math.abs(offset) / 1440 * 50}%`,
@@ -131,7 +131,7 @@ const TimeTravelControl: React.FC<TimeTravelControlProps> = ({ offset, setOffset
 
             {/* Thumb indicator */}
             <div
-              className={`absolute w-0.5 bg-[#CCFF00] pointer-events-none transition-all duration-100 shadow-[0_0_12px_rgba(204,255,0,0.8)] z-10 ${isScrubbing ? 'h-12 shadow-[0_0_20px_rgba(204,255,0,1)]' : 'h-10'
+              className={`absolute w-0.5 timeline-thumb pointer-events-none transition-all duration-100 z-10 ${isScrubbing ? 'h-12 scale-x-150' : 'h-10'
                 }`}
               style={{
                 left: `calc(50% + ${(offset / 1440) * 50}%)`,
@@ -139,18 +139,18 @@ const TimeTravelControl: React.FC<TimeTravelControlProps> = ({ offset, setOffset
               }}
             />
 
-            {/* Center zero marker with pulse */}
-            <div className={`absolute left-1/2 -translate-x-1/2 w-[2px] h-16 pointer-events-none transition-all ${isActive ? 'bg-gradient-to-b from-transparent via-white/10 to-transparent' : 'bg-gradient-to-b from-transparent via-[#CCFF00]/30 to-transparent'
+            {/* Center zero marker (NOW) */}
+            <div className={`absolute left-1/2 -translate-x-1/2 w-[2px] h-16 pointer-events-none transition-all ${isActive ? 'bg-white/5 opacity-20' : 'timeline-marker-line timeline-marker-glow z-10'
               }`} />
 
           </div>
 
           {/* Time labels */}
           <div className="flex justify-between mt-4 px-0.5">
-            <span className="text-[9px] font-bold text-[#444] tracking-widest">-24H</span>
-            <span className={`text-[9px] font-black tracking-widest transition-all ${isActive ? 'text-[#666]' : 'text-[#CCFF00] animate-pulse'
+            <span className="text-[9px] font-bold text-[var(--text-muted)] tracking-widest hover:text-[var(--text-secondary)] transition-colors">-24H</span>
+            <span className={`text-[9px] font-black tracking-widest transition-all ${isActive ? 'text-[var(--text-muted)]' : 'text-[var(--accent-primary)]'
               }`}>NOW</span>
-            <span className="text-[9px] font-bold text-[#444] tracking-widest">+24H</span>
+            <span className="text-[9px] font-bold text-[var(--text-muted)] tracking-widest hover:text-[var(--text-secondary)] transition-colors">+24H</span>
           </div>
 
         </div>
