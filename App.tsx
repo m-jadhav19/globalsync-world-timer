@@ -33,6 +33,8 @@ const App: React.FC = () => {
     localStorage.setItem('meridian_zones', JSON.stringify(zones));
   }, [zones]);
 
+  const isActive = timeOffset !== 0;
+
   const handleAddZone = (result: SearchResult) => {
     const newEntry: TimeZoneEntry = {
       id: Math.random().toString(36).substr(2, 9),
@@ -47,8 +49,17 @@ const App: React.FC = () => {
     setZones(prev => prev.filter(z => z.id !== id));
   };
 
+  const bgShift = useMemo(() => {
+    const hueOffset = (timeOffset / 1440) * 40; // Max 40deg shift over 24h
+    const opacity = Math.min(Math.abs(timeOffset) / 1440, 0.4);
+    return {
+      filter: `hue-rotate(${hueOffset}deg)`,
+      background: isActive ? `radial-gradient(120% 80% at 50% -20%, rgba(124, 140, 255, ${opacity}), transparent 70%)` : ''
+    };
+  }, [timeOffset, isActive]);
+
   return (
-    <div className="min-h-screen text-white font-pop pb-48 selection:bg-[var(--accent-primary)] selection:text-black">
+    <div className="min-h-screen text-white font-pop pb-40 selection:bg-[var(--accent-primary)] selection:text-black transition-colors duration-700" style={bgShift}>
 
       {/* Enhanced Header */}
       <header className="sticky top-0 z-50 backdrop-blur-xl h-20 flex items-center justify-between px-6 sm:px-12 border-b border-[var(--metal-edge)]" style={{
@@ -69,10 +80,10 @@ const App: React.FC = () => {
         </button>
       </header>
 
-      <main className="max-w-[1600px] mx-auto px-6 sm:px-12 py-12 relative z-10">
+      <main className="max-w-[1600px] mx-auto px-5 sm:px-12 py-8 sm:py-12 relative z-10">
 
         {/* Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-[18px] sm:gap-6 lg:gap-8">
           {zones.map((zone, idx) => (
             <ClockCard
               key={zone.id}
@@ -80,7 +91,8 @@ const App: React.FC = () => {
               now={displayTime}
               format={TimeFormat.H12}
               onRemove={handleRemoveZone}
-              isDimmed={isScrubbing}
+              isDimmed={isScrubbing && idx !== 0}
+              isScrubbing={isScrubbing}
               isAnchor={idx === 0}
             />
           ))}
